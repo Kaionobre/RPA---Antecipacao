@@ -16,13 +16,16 @@ ir_para_protocolo(browser)
 
 for linha in ler_planilha.itertuples():
     protocolo = linha.Protocolo
-    print(protocolo)
     pesquisar_protocolo(browser, protocolo)
-    ler_planilha[linha.Index, 'Razão Social'] = copiar_razao_social(browser)
-    #copiar_razao_social(browser)
+
+    ler_planilha.at[linha.Index, 'Razão Social'] = copiar_razao_social(browser)
+    ler_planilha.at[linha.Index, 'AGR'] = copiar_nome_agr(browser)
+
     limpar_filtro(browser)
 
 nome_arquivo = f"Planilha Finalizada {datetime.now().strftime('%d-%m-%Y__%H-%M-%S')}.xlsx"
-lerPlanilha.to_excel(nome_arquivo, index=False)
+ler_planilha.to_excel(nome_arquivo, index=False)
+
+
 
 

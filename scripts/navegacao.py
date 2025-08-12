@@ -8,11 +8,6 @@ import time
 import pandas as pd
 
 config = Configuracoes()
-browser = webdriver.Chrome()
-
-lerPlanilha = pd.read_excel(config.get_caminho_planilha(), config.get_pagina_planilha())
-
-
 def abrir_site(browser, url:str):
     while True:
         try:
@@ -44,13 +39,17 @@ def pesquisar_protocolo(browser, protocolo):
 def copiar_razao_social(browser):
     while True:
         try:
-            #div_pai = browser.find_element(By.CSS_SELECTOR, 'body > app-root > div > div > app-pages > div.wrapper-inner > div > div > app-relatorio-emissao-lista > form > div > div > div.table-responsive.table-light.table-striped.table-bordered.table-sm.ng-star-inserted')
-            #tabela = browser.find_element(By.CSS_SELECTOR, 'body > app-root > div > div > app-pages > div.wrapper-inner > div > div > app-relatorio-emissao-lista > form > div > div > div.table-responsive.table-light.table-striped.table-bordered.table-sm.ng-star-inserted > table > tbody > tr')
-            #corpo_tabela = browser.find_element(By.CSS_SELECTOR, 'body > app-root > div > div > app-pages > div.wrapper-inner > div > div > app-relatorio-emissao-lista > form > div > div > div.table-responsive.table-light.table-striped.table-bordered.table-sm.ng-star-inserted > table > tbody')
-            #razao_social = ''
             razao_social = browser.find_element(By.CSS_SELECTOR, 'body > app-root > div > div > app-pages > div.wrapper-inner > div > div > app-relatorio-emissao-lista > form > div > div > div.table-responsive.table-light.table-striped.table-bordered.table-sm.ng-star-inserted > table > tbody > tr > td:nth-child(4)').text
             return str(razao_social)
-            break
+        except:
+            continue
+
+def copiar_nome_agr(browser):
+    while True:
+        try:
+            
+            nome_agr = browser.find_element(By.CSS_SELECTOR, 'body > app-root > div > div > app-pages > div.wrapper-inner > div > div > app-relatorio-emissao-lista > form > div > div > div.table-responsive.table-light.table-striped.table-bordered.table-sm.ng-star-inserted > table > tbody > tr > td:nth-child(10)').text
+            return str(nome_agr)
         except:
             continue
 
@@ -62,4 +61,6 @@ def limpar_filtro(browser):
         except:
             continue
 
-    
+def elemento_nao_encontrado(browser):
+    sem_elemento = browser.find_element(By.CSS_SELECTOR, 'body > app-root > div > div > app-pages > div.wrapper-inner > div > div > app-relatorio-emissao-lista > form > div > div > div.col-md-12.ng-star-inserted').text
+    return str(sem_elemento)
