@@ -44,6 +44,3 @@ Com o robô:
    - Atualiza a planilha  
 5. O programa finaliza a planilha com os campos preenchidos  
 6. Apenas enviar o arquivo gerado para a supervisão  
-
-git clone https://github.com/Kaionobre/RPA-antecipacao-de-protocolo.git
-cd RPA-antecipacao-de-protocolo
